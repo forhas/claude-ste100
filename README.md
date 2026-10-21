@@ -13,6 +13,7 @@ The installable file is [`output-styles/ste100-concise.md`](output-styles/ste100
 | Verb tenses | Prefers simple tenses; permits other forms when they improve accuracy or clarity. |
 | Uncertainty | Separates facts, hypotheses, recommendations, and untested assumptions. |
 | Technical language | Preserves meaningful distinctions, trade-offs, and exact engineering terms. |
+| Reader | Uses common English for a technically capable non-native speaker. Introduces difficult ideas intuitively; gives full ELI5 explanations on request. |
 | Response length | Leads with the answer; removes preambles, repetition, and routine narration. |
 | Sentence length | Uses length targets instead of hard caps. |
 | Engineering work | Keeps coding instructions and requires honest reporting of verification. |
@@ -102,6 +103,8 @@ These are illustrative responses, not results from a model evaluation.
 > A longer cache TTL reduces database reads but can serve stale data for longer. Use it only if that delay is acceptable.
 
 Short questions should usually get short answers. Requests for detailed explanations, tutorials, or complete documentation should still get the detail they need.
+
+The style separates English proficiency from technical knowledge. It avoids idioms and unnecessary formality without assuming you are a beginner. Ask "Explain this like I'm five" for a concrete example or analogy; important technical distinctions and uncertainty still apply.
 
 The frontmatter sets `keep-coding-instructions: true` to retain Claude Code's coding guidance on its full system prompt. This field has no effect on the shorter prompt, which omits that guidance. See [how output styles work](https://code.claude.com/docs/en/output-styles#how-output-styles-work). The style also explicitly requires thorough work and accurate verification reports.
 
