@@ -51,6 +51,8 @@ Copy-Item -Path '.\output-styles\ste100-concise.md' -Destination "$HOME\.claude\
 
 Install in the environment where you run Claude Code: WSL and native Windows have separate home directories. If you set `CLAUDE_CONFIG_DIR`, use that directory instead of `~/.claude`. See [Claude Code settings locations](https://code.claude.com/docs/en/settings).
 
+Check your Claude launch command or shell alias too: it may set `CLAUDE_CONFIG_DIR` only when Claude starts. For example, if it uses `~/.claude-personal`, install the file in `~/.claude-personal/output-styles/` and edit `~/.claude-personal/settings.json` wherever this guide refers to user settings.
+
 ### For one project only
 
 Copy the style into the target project's `.claude/output-styles/` directory. For example, from this repository in a Bash terminal, replace the example path:
@@ -79,7 +81,7 @@ To make it your default across projects, install it at the user level and merge 
 }
 ```
 
-Preserve your other settings. Use the exact capitalization shown above. Project settings can override the user setting. For a shared project default, use the same property in `.claude/settings.json` and commit the project style file too. See [output-style selection](https://code.claude.com/docs/en/output-styles#change-your-output-style).
+Preserve your other settings. Add `"outputStyle": "STE100 Concise"` inside the existing top-level JSON object; do not paste a second pair of braces inside it. Separate properties with commas. Use the exact capitalization shown above. Project settings can override the user setting. For a shared project default, use the same property in `.claude/settings.json` and commit the project style file too. See [output-style selection](https://code.claude.com/docs/en/output-styles#change-your-output-style).
 
 You select this custom style on its own; you do not also need to enable the built-in Concise style.
 
@@ -127,6 +129,8 @@ To stop using the style, select **Default** in the output-style menu. Remove any
 | Problem | Check |
 | --- | --- |
 | Style is missing | Restart Claude Code. Confirm the file ends in `.md` and is in the user or target project's `.claude/output-styles` directory. |
+| Only built-in styles appear | Check whether your launch command or alias sets `CLAUDE_CONFIG_DIR`. Install the style in that directory's `output-styles/` folder, then restart. Remote Control's web/mobile selector supports only built-in styles; use the local terminal for custom styles. |
+| Settings fail to load | Validate the JSON. Add the `outputStyle` property to the existing object, without an extra nested object or trailing comma. |
 | Edits have no effect | Edit or replace the installed copy, then restart. Editing the downloaded repository alone does not update that copy. |
 | Another style appears | Check project settings for an `outputStyle` override. Confirm the setting uses `STE100 Concise` exactly. |
 | `/output-style` is unavailable | Use the terminal's `/config` menu. The current command interface requires Claude Code v2.1.269 or later. |
